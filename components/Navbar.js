@@ -33,6 +33,7 @@ const Navbar = () => {
     setTimeout(() => setProgress(0), 50)
   }, [])
 
+  // Auto-dismiss alert after 3 seconds
   useEffect(() => {
     if (showAlert) {
       const timeout = setTimeout(() => setShowAlert(false), 3000)
@@ -112,21 +113,23 @@ const Navbar = () => {
               </SheetHeader>
             </SheetContent>
           </Sheet>
-
-          {/* Alert after closing sheet */}
-          {showAlert && (
-            <div className="fixed inset-0 flex items-center justify-center z-50 pointer-events-none">
-              <Alert variant='destructive'>
-                <Info className="h-4 w-4" />
-                <AlertTitle>We are sorry!</AlertTitle>
-                <AlertDescription>
-                  This page is not ready yet.
-                </AlertDescription>
-              </Alert>
-            </div>
-          )}
         </div>
       </div>
+
+      {/* Centered Alert visible on all screen sizes */}
+      {showAlert && (
+        <div className="fixed inset-0 flex items-center justify-center z-50 pointer-events-none">
+          <div className="pointer-events-auto w-[90%] max-w-sm">
+            <Alert variant='destructive'>
+              <Info className="h-4 w-4" />
+              <AlertTitle>We are Sorry!</AlertTitle>
+              <AlertDescription>
+                This page is not ready yet.
+              </AlertDescription>
+            </Alert>
+          </div>
+        </div>
+      )}
     </nav>
   )
 }
